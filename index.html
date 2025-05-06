@@ -1,21 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Do You Love Me?</title>
-        <link rel="stylesheet" href="styleLanding.css"/>
-    </head>
-    <body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Secret Confession</title>
+  <link rel="stylesheet" href="styleLanding.css" />
+  <link rel="stylesheet" href="styleMain.css" />
+</head>
+<body>
+  <div class="landing">
+    <h1>Hey! Tumhara naam kya hai?</h1>
+    <img class="gif" src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNjcxemJtM3F0ZzZpM2xpcnVwb3dqeWtwbWlwOGgxcnZ6dHE2eHZ2dyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/xUPGcguWZHRC2HyBRS/giphy.gif" alt="Cute gif" />
+    <div class="center">
+      <input id="nameInput" type="text" placeholder="Tumhara naam..." />
+    </div>
+    <div class="center">
+      <button onclick="goToProposal()">Start!</button>
+    </div>
+  </div>
+
+  <script>
+    function goToProposal() {
+      const name = document.getElementById("nameInput").value.trim();
+      if (!name) return alert("Naam to daalo!");
+
+      document.body.innerHTML = `
         <div class="wrapper">
-            <img class="gif" alt="gif" src="https://media.giphy.com/media/hiJ9ypGI5tIKdwKoK2/giphy.gif"/>
-            <h1 class="question"> What is your name? I want to know you better </h1>
-            <div class="center">
-                <input type="text" id="fname" name="fname">
-                <button id="start_button">Start!</button>
-            </div>
-            </div> 
+          <h2 class="question">${name}, kya tum mujhse pyaar karti ho?</h2>
+          <img class="gif" src="https://media.giphy.com/media/3o7abB06u9bNzA8lu8/giphy.gif" alt="Cute gif" />
+          <div class="btn-group">
+            <button id="yesBtn">Yes</button>
+            <button id="noBtn">No</button>
+          </div>
         </div>
-        <script src="script.js"></script>
-    </body>
+      `;
+
+      document.getElementById("yesBtn").addEventListener("click", () => {
+        const script = document.createElement("script");
+        script.src = "scriptMain.js";
+        document.body.appendChild(script);
+      });
+
+      const noBtn = document.getElementById("noBtn");
+      noBtn.addEventListener("mouseover", () => {
+        const i = Math.floor(Math.random() * 300);
+        const j = Math.floor(Math.random() * 300);
+        noBtn.style.position = "absolute";
+        noBtn.style.left = `${i}px`;
+        noBtn.style.top = `${j}px`;
+      });
+
+      document.body.className = "main";
+    }
+  </script>
+</body>
 </html>
